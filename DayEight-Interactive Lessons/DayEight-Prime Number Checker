@@ -1,0 +1,9 @@
+def prime_checker(number):
+  for i in range(2,number+1):
+    if i==number or number==1:
+      
+      print("It's a prime number.")
+      return 
+    elif number/i==int(number//i):
+      print("It's not a prime number.")
+      return
