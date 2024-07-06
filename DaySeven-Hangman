@@ -1,0 +1,37 @@
+import random
+from hangman_art import logo
+from hangman_art import stages
+
+def handman():
+    #Provides the potential words to be chosen by the computer
+    Words=["Apple","Banana","Carrot","Cantalope","Magic","Art","Wanda","Scared","Clay","Material"]
+    Computer_choice=Words[random.randint(0,len(Words)-1)]
+    #represents the number of letters that the user has uncovered in the computer choice word
+    user_choice=[]
+    #represents the numeber of lives the user has left
+    game=5
+    print(logo)
+    #represents the number of letters that the user has uncovered in the computer choice word
+    for i in range(len(Computer_choice)):
+    #creates the placeholders till the word is uncovered
+        user_choice+="_"
+    while game>0:
+        
+        print(user_choice)
+        if "".join(user_choice)==Computer_choice:
+            print("You win! The word was "+Computer_choice)
+            return
+        user_input=str(input("What is your guess?: "))
+        if user_input.lower() in Computer_choice.lower():
+           #Find the index of the matching letter or letters
+           for i in range(len(Computer_choice)):
+            if user_input.lower()==Computer_choice[i].lower():
+                user_choice[i] = Computer_choice[i]
+                #user_choice= "".join(user_choice)
+                print(user_choice)
+        else:
+            print("Incorrect", user_choice)
+            game-=1
+            print(stages[game])
+            print("You have",game,"lives left")
+handman()
